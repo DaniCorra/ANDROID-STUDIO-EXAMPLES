@@ -1,38 +1,35 @@
 package com.kocolondon.canvasdemo;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.ImageView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        ImageView ourFrame = (ImageView) findViewById(R.id.imageView);
+        Bitmap ourBitmap = Bitmap.createBitmap(300,600, Bitmap.Config.ARGB_8888);
+        Canvas ourCanvas = new Canvas(ourBitmap);
+        ourCanvas.drawColor(Color.BLACK);
+        Paint paint = new Paint();
+        paint.setColor(Color.argb(255, 255, 255, 255));
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        //Now draw a load of stuff on our canvas
+        ourCanvas.drawText("Score: 42 Lives: 3 Hi: 97", 10, 10, paint);
+        ourCanvas.drawLine(10, 50, 200, 50, paint);
+        ourCanvas.drawCircle(110, 160, 100, paint);
+        ourCanvas.drawPoint(10, 260, paint);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        //Now put the canvas in the frame
+        ourFrame.setImageBitmap(ourBitmap);
     }
 }
