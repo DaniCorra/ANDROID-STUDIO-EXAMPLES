@@ -66,6 +66,50 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        squashCourtView = new SquashCourtView(this);
+        setContentView(squashCourtView);
+
+        //Sound code
+        soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        try {
+            //Create objects of the 2 required classes
+            AssetManager assetManager = getAssets();
+            AssetFileDescriptor descriptor;
+
+            //create our three fx in memory ready for use
+            descriptor = assetManager.openFd("sample1.ogg");
+            sample1 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("sample2.ogg");
+            sample2 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("sample3.ogg");
+            sample3 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("sample4.ogg");
+            sample4 = soundPool.load(descriptor, 0);
+        } catch (IOException e) {
+            //catch exceptions here
+        }
+
+        //Could this be an object with getters and setters
+        //Don't want just anyone changing screen size.
+        //Get the screen size in pixels
+        display = getWindowManager().getDefaultDisplay();
+        size = new Point();
+        display.getSize(size);
+        screenWidth = size.x;
+        screenHeight = size.y;
+
+        //The game objects
+        racketPosition = new Point();
+        racketPosition.x = screenWidth / 2;
+        racketPosition.y = screenHeight - 20;
+        racketWidth = screenWidth / 8;
+        racketHeight = 10;
+
+        ballWidth = screenWidth / 35;
+        ballPosition = new Point();
+        ballPosition.x = screenWidth / 2;
+        ballPosition.y = 1 + ballWidth;
+
+        lives = 3;
     }
 }
