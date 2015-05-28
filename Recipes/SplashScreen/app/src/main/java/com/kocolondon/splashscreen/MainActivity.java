@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
                 // GAME_THREAD_DELAY = 1000;
 
                 MainActivity.this.finish();
+                overridePendingTransition(R.layout.fadein, R.layout.fadeout);
             }
         }, GAME_THREAD_DELAY);
     }
