@@ -13,6 +13,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         new Handler().postDelayed(new Runnable() {
@@ -23,8 +24,8 @@ public class MainActivity extends Activity {
 
                 // perform all house keeping activities here
 
-                GAME_THREAD_DELAY = 1000;
-                
+                // GAME_THREAD_DELAY = 1000;
+
                 MainActivity.this.finish();
             }
         }, GAME_THREAD_DELAY);
