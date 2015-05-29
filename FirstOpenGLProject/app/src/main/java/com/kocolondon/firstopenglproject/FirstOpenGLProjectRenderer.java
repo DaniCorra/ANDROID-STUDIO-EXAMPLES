@@ -1,6 +1,7 @@
 package com.kocolondon.firstopenglproject;
 
-import static android.opengl.GLES20.GL_COLOR_BUFFER_BIT; import static android.opengl.GLES20.glClear;
+import static android.opengl.GLES20.GL_COLOR_BUFFER_BIT;
+import static android.opengl.GLES20.glClear;
 import static android.opengl.GLES20.glClearColor;
 import static android.opengl.GLES20.glViewport;
 
